@@ -2,31 +2,33 @@ import java.util.Scanner;
 
 public class Questao3 {
     
-    public static StringBuilder cripto(String texto){
+    public static char[] cripto(String texto){
         int tam_string = texto.length();
-        StringBuilder string_modificada = new StringBuilder(texto); // crio uma string do tipo StringBuilder para poder receber o valor da minha string original e permitir este valor ser alterado
+        char[] vetor_string = new char[tam_string];
         char caracter, novoCarater;
         int valorASCII;
 
-        //Neste looping eu faço a varredura de todos os caracteres da minha string de entrda
         for(int i = 0; i < tam_string; i++){
             caracter = texto.charAt(i); //pego o caracter da vez
-            valorASCII = (int) caracter + 3; //passo este caracter para o valor inteiro dele referente a tabela ASCII e ja adiciono +3
+            valorASCII = (int) caracter; //passo este caracter para o valor inteiro dele referente a tabela ASCII
+            if (valorASCII >= 1 && valorASCII <= 127) { //verifica se o caracterere é uma letra
+                valorASCII += 3;
+            }
             novoCarater = (char) valorASCII; //Transformo este valor ja modificado novamente para caracter
-            string_modificada.setCharAt(i, novoCarater); //substitiu me valor original pelo valor modificado na minha String auxiliar 
+            vetor_string[i] = novoCarater;
         }
         
-        return string_modificada;
+        return vetor_string;
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String texto; 
-        StringBuilder retorno;
+        char[] retorno;
         int valid = 0;
 
         do{
             texto = sc.nextLine();
-            if(texto.equals("FIM")){ 
+            if(texto.charAt(0) == 'F' && texto.charAt(1) == 'I' && texto.charAt(2) == 'M'){ 
                 valid = 1;
             }else{
                 retorno = cripto(texto);
