@@ -164,6 +164,7 @@ public class Questao7 {
                 consoantes = contConsoantes(text);
                 br_tags = contBr(text);
                 table_tags = contTable(text);
+                consoantes = consoantes - (table_tags * 3) - (br_tags * 2);
                 result = "a(" + vogais[0] + ") e(" + vogais[1] + ") i(" + vogais[2] + ") o(" + vogais[3] + ") u(" + vogais[4] + ") \u00E1(" + vogais[5] + ") \u00E9(" + vogais[6] + ") \u00ED(" + vogais[7] + 
                 ") \u00F3(" + vogais[8] + ") \u00FA(" + vogais[9] + ") \u00E0(" + vogais[10] + ") \u00E8(" + vogais[11] + ") \u00EC(" + vogais[12] + ") \u00F2(" + vogais[13] + ") \u00F9(" + vogais[14] + 
                 ") \u00E3(" + vogais[15] + ") \u00F5(" + vogais[16] + ") \u00E2(" + vogais[17] + ") \u00EA(" + vogais[18] + ") \u00EE(" + vogais[19] + ") \u00F4(" + vogais[20] + ") \u00FB(" + vogais[21] + 
