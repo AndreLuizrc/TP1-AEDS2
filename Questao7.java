@@ -56,41 +56,42 @@ public class Questao7 {
                 vetor_cont[3] += 1;
             } else if(text.charAt(i) == 'u'){
                 vetor_cont[4] += 1;
-            } else if(text.charAt(i) == 'á'){
+            } else if(text.charAt(i) == '\u00E1'){
                 vetor_cont[5] += 1;
-            } else if(text.charAt(i) == 'é'){
+            } else if(text.charAt(i) == '\u00E9'){
                 vetor_cont[6] += 1;
-            } else if(text.charAt(i) == 'í'){
+            } else if(text.charAt(i) == '\u00ED'){
                 vetor_cont[7] += 1;
-            } else if(text.charAt(i) == 'ó'){
+            } else if(text.charAt(i) == '\u00F3'){
                 vetor_cont[8] += 1;
-            } else if(text.charAt(i) == 'ú'){
+            } else if(text.charAt(i) == '\u00FA'){
                 vetor_cont[9] += 1;
-            } else if(text.charAt(i) == 'à'){
+            } else if(text.charAt(i) == '\u00E0'){
                 vetor_cont[10] += 1;
-            } else if(text.charAt(i) == 'è'){
+            } else if(text.charAt(i) == '\u00E8'){
                 vetor_cont[11] += 1;
-            } else if(text.charAt(i) == 'ì'){
+            } else if(text.charAt(i) == '\u00EC'){
                 vetor_cont[12] += 1;
-            } else if(text.charAt(i) == 'ò'){
+            } else if(text.charAt(i) == '\u00F2'){
                 vetor_cont[13] += 1;
-            } else if(text.charAt(i) == 'ù'){
+            } else if(text.charAt(i) == '\u00F9'){
                 vetor_cont[14] += 1;
-            } else if(text.charAt(i) == 'ã'){
+            } else if(text.charAt(i) == '\u00E3'){
                 vetor_cont[15] += 1;
-            } else if(text.charAt(i) == 'õ'){
+            } else if(text.charAt(i) == '\u00F5'){
                 vetor_cont[16] += 1;
-            } else if(text.charAt(i) == 'â'){
+            } else if(text.charAt(i) == '\u00E2'){
                 vetor_cont[17] += 1;
-            } else if(text.charAt(i) == 'ê'){
+            } else if(text.charAt(i) == '\u00EA'){
                 vetor_cont[18] += 1;
-            } else if(text.charAt(i) == 'î'){
+            } else if(text.charAt(i) == '\u00EE'){
                 vetor_cont[19] += 1;
-            } else if(text.charAt(i) == 'ô'){
+            } else if(text.charAt(i) == '\u00F4'){
                 vetor_cont[20] += 1;
-            } else if(text.charAt(i) == 'û'){
+            } else if(text.charAt(i) == '\u00FB'){
                 vetor_cont[21] += 1;
             }
+            
         }
 
         return vetor_cont;
@@ -144,14 +145,17 @@ public class Questao7 {
         return cont_Table;
     }
     public static void main(String[] args) {
-        String name, url; 
+        String name, url = ""; 
         String text;
         int valid = 0, consoantes, br_tags, table_tags;
         int[] vogais = new int[22];
         String result;
         do{
             name = sc.nextLine();
-            url = sc.nextLine();
+            if(sc.hasNextLine()){
+                url = sc.nextLine();
+            }
+            
             if(name.charAt(0) == 'F' && name.charAt(1) == 'I' && name.charAt(2) == 'M'){ 
                 valid = 1;
             }else{
@@ -160,10 +164,11 @@ public class Questao7 {
                 consoantes = contConsoantes(text);
                 br_tags = contBr(text);
                 table_tags = contTable(text);
-                result = "a(" + vogais[0] + ") e(" + vogais[1] + ") i(" + vogais[2] + ") o(" + vogais[3] + ") u(" + vogais[4] + ") á(" + vogais[5] + ") é(" + vogais[6] + ") í(" + vogais[7] +
-                ") ó(" + vogais[8] + ") ú(" + vogais[9] + ") à(" + vogais[10] + ") è(" + vogais[11] + ") ì(" + vogais[12] + ") ò(" + vogais[13] + ") ù(" + vogais[14] + ") ã(" + vogais[15] + 
-                ") õ(" + vogais[16] + ") â(" + vogais[17] + ") ê(" + vogais[18] + ") î(" + vogais[19] + ") ô(" + vogais[20] + ") û(" + vogais[21] + ") consoantes(" + consoantes + ") <br>("
-                + br_tags + ") <table>(" + table_tags + ") " + name;
+                result = "a(" + vogais[0] + ") e(" + vogais[1] + ") i(" + vogais[2] + ") o(" + vogais[3] + ") u(" + vogais[4] + ") \u00E1(" + vogais[5] + ") \u00E9(" + vogais[6] + ") \u00ED(" + vogais[7] + 
+                ") \u00F3(" + vogais[8] + ") \u00FA(" + vogais[9] + ") \u00E0(" + vogais[10] + ") \u00E8(" + vogais[11] + ") \u00EC(" + vogais[12] + ") \u00F2(" + vogais[13] + ") \u00F9(" + vogais[14] + 
+                ") \u00E3(" + vogais[15] + ") \u00F5(" + vogais[16] + ") \u00E2(" + vogais[17] + ") \u00EA(" + vogais[18] + ") \u00EE(" + vogais[19] + ") \u00F4(" + vogais[20] + ") \u00FB(" + vogais[21] + 
+                ") consoantes(" + consoantes + ") <br>(" + br_tags + ") <table>(" + table_tags + ") " + name;
+                
                 System.out.println(result);
             }
         }while(valid != 1);
