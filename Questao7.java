@@ -3,7 +3,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URL;
 import java.util.Scanner;
 
@@ -13,14 +12,12 @@ public class Questao7 {
 
     //Função para ler a URL, iniciar a conexão com o site e retornar o conteudo HTML do mesmo
     public static String getUrl(String endereco) {
-        URI uri;
         URL url;
-        InputStream is;
+        InputStream is = null;
         BufferedReader br;
         String text = " ", line;
         try{
-            uri = new URI(endereco); //inicialização da URI passando o endereço como paramentro
-            url = uri.toURL(); // trasnformação da URI para URL
+            url = new URL(endereco); //inicialização da URL passando o endereço como paramentro
             is = url.openStream(); //Abertura de conesão com o site
             br = new BufferedReader(new InputStreamReader(is)); // Buffer para ler o conteudo do site
 
@@ -35,6 +32,12 @@ public class Questao7 {
             e.printStackTrace();
         }
 
+        try {
+            is.close();
+        } catch (IOException ioe) {
+            // nothing to see here
+        }
+        
         return text;
  
     }
@@ -152,23 +155,23 @@ public class Questao7 {
         String result;
         do{
             name = sc.nextLine();
-            if(sc.hasNextLine()){
-                url = sc.nextLine();
-            }
             
             if(name.charAt(0) == 'F' && name.charAt(1) == 'I' && name.charAt(2) == 'M'){ 
                 valid = 1;
             }else{
+                url = sc.nextLine();
                 text = getUrl(url);
                 vogais = contVogais(text);
                 consoantes = contConsoantes(text);
                 br_tags = contBr(text);
                 table_tags = contTable(text);
                 consoantes = consoantes - (table_tags * 3) - (br_tags * 2);
+                vogais[0] = vogais[0] - table_tags;
+                vogais[1] = vogais[1] - table_tags;
                 result = "a(" + vogais[0] + ") e(" + vogais[1] + ") i(" + vogais[2] + ") o(" + vogais[3] + ") u(" + vogais[4] + ") \u00E1(" + vogais[5] + ") \u00E9(" + vogais[6] + ") \u00ED(" + vogais[7] + 
                 ") \u00F3(" + vogais[8] + ") \u00FA(" + vogais[9] + ") \u00E0(" + vogais[10] + ") \u00E8(" + vogais[11] + ") \u00EC(" + vogais[12] + ") \u00F2(" + vogais[13] + ") \u00F9(" + vogais[14] + 
                 ") \u00E3(" + vogais[15] + ") \u00F5(" + vogais[16] + ") \u00E2(" + vogais[17] + ") \u00EA(" + vogais[18] + ") \u00EE(" + vogais[19] + ") \u00F4(" + vogais[20] + ") \u00FB(" + vogais[21] + 
-                ") consoantes(" + consoantes + ") <br>(" + br_tags + ") <table>(" + table_tags + ") " + name;
+                ") consoante(" + consoantes + ") <br>(" + br_tags + ") <table>(" + table_tags + ") " + name;
                 
                 System.out.println(result);
             }
