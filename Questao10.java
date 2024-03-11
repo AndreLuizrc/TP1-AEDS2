@@ -13,7 +13,7 @@ public class Questao10 {
 
         tam_string = texto.length();
 
-        if(i == tam_string-1){
+        if(i == tam_string-1){ //0123
             valid_poli = true;
         } else if(texto.charAt(i) == texto.charAt(j)){ //Uso as minhas variaveis como indice para comparar se os vlaores nas posições contrarias são iguais
             valid_poli = palindromo(texto, i + 1, j - 1);
