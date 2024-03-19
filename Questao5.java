@@ -6,31 +6,38 @@ public class Questao5 {
     public static boolean AlgebraBoolean(String expressao){
         int tam_string = expressao.length();
         int num_entradas, n=0;
-        String expressoes;
+        String expressoes = "";
         boolean result;
-        //num_entradas = (int)expressao.charAt(0);
+        num_entradas = Character.getNumericValue(expressao.charAt(0));
         //System.out.println(expressao.charAt(0));
-        /*int[] valores = new int[num_entradas];
+        int[] valores = new int[num_entradas];
 
-        for(int i = 0; i <= num_entradas; i++){
-            valores[i] = expressao.charAt(i+2);
-            System.out.println(valores[i]);
-        }*/
-        for(int i = tam_string; i >= 0; i--){
+        for(int i = 0, point = 0; i < num_entradas; i++){
+            point += 2;
+            valores[i] = Character.getNumericValue(expressao.charAt(point));
+            System.out.println("Valores:" + valores[i]);
+        }
+
+        for(int i = tam_string-1; i >= 0; i--){
             if(expressao.charAt(i) == '('){
                 for(int j = i; j < tam_string; j++){
                     if(expressao.charAt(j) == ')'){
-                        expressoes = expressao.substring(i, j);
+                        expressoes = expressao.substring(i-1, j+1);
                         j = tam_string;
                     }
                 }
 
-                if( expressao.charAt(i-1) == 't'){
-                    result = not(expressoes);
-                } else if(expressao.charAt(i-1) == 'd'){
-                    result = and(expressoes)
-                } else if(expressao.charAt(i-1) == 'r'){
-                    result = or(expressoes)
+                System.out.println(expressoes);
+
+                if( expressoes.charAt(0) == 't'){
+                    //result = not(expressoes);
+                    System.out.println("not");
+                } else if(expressoes.charAt(0) == 'd'){
+                    //result = and(expressoes)
+                    System.out.println("and");
+                } else if(expressoes.charAt(0) == 'r'){
+                    //result = or(expressoes)
+                    System.out.println("or");
                 }
             }
         }
