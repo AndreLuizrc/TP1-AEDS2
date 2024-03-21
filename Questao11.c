@@ -6,12 +6,12 @@ bool Chamarpalindromo(char *);
 bool palindromo(char *, int, int);
 
 int main(){
-    char string[200];
+    char string[400];
     int valid = 0;
     bool retorno;
 
     do{
-        fgets(string,200,stdin); 
+        fgets(string,400,stdin); 
         if (string[0] == 'F' && string[1] == 'I' && string[2] == 'M'){
             valid = 1;
         }else{

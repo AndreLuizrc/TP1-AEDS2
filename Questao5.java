@@ -5,8 +5,8 @@ public class Questao5 {
 
     public static char[] convert(String expressao, int tam_exp){
         char[] exp = new char[tam_exp];
-        for(int i = 0; i < tam_exp; i++){
-            exp[i] = expressao.charAt(i);
+        for(int i = 1; i < tam_exp; i++){
+            exp[i-1] = expressao.charAt(i);
         }
 
         return exp;
@@ -14,7 +14,6 @@ public class Questao5 {
 
     public static void ReplaceA(char[] expressao, int valor, int tam_exp){
         
-       // StringBuilder result =  new StringBuilder(expressao);
         for(int i = 0; i < tam_exp; i++){
             if(expressao[i] == 'A'){
                 expressao[i] = (char) (valor + '0');
@@ -25,7 +24,6 @@ public class Questao5 {
 
     public static void ReplaceB(char[] expressao, int valor, int tam_exp){
         
-        // StringBuilder result =  new StringBuilder(expressao);
          for(int i = 0; i < tam_exp; i++){
              if(expressao[i] == 'B'){
                  expressao[i] = (char) (valor + '0');
@@ -36,7 +34,6 @@ public class Questao5 {
 
     public static void ReplaceC(char[] expressao, int valor, int tam_exp){
         
-        // StringBuilder result =  new StringBuilder(expressao);
          for(int i = 0; i < tam_exp; i++){
              if(expressao[i] == 'C'){
                  expressao[i] = (char) (valor + '0');
@@ -45,7 +42,7 @@ public class Questao5 {
  
     }
 
-    public static void not(char[] exp, int tam_exp){ //not(0)
+    public static void not(char[] exp, int tam_exp){ //1     
         for(int i = tam_exp-1; i >= 0; i--){
             if(exp[i] == 't'){
                 if(exp[i+2] == '0'){
@@ -89,7 +86,6 @@ public class Questao5 {
 
                 for(int k = i + 1; k < parantese; k++){ //and
                     if(exp[k] == '0'){
-                        //System.out.println("Entrou!");
                         valid = false;
                         exp[i-2] = '0';
                         for(int h = i-1; h <= parantese; h++){
@@ -99,7 +95,6 @@ public class Questao5 {
                 }
 
                 if(valid == true){
-                    //System.out.println("Entou no true");
                     exp[i-2] = '1';
                     for(int h = i-1; h <= parantese; h++){
                         exp[h] = ' ';
@@ -167,31 +162,26 @@ public class Questao5 {
         int tam_exp = expressao.length();
         char[] exp;
         String next;
-        //System.out.println(expressao);
-        //System.out.println(tam_exp);
-        //System.out.println(valores[0]);
 
         exp = convert(expressao, tam_exp);
 
         if(quant_valores == 1){
             ReplaceA(exp, valores[0],tam_exp);
-            //System.out.println(exp);
+            //System.out.println("Dentro de replace: " + exp[1]);
         } else if(quant_valores == 2){
             ReplaceA(exp, valores[0], tam_exp);
             ReplaceB(exp, valores[1], tam_exp);
-            System.out.println(exp);
+            //System.out.println("Dentro de replace: " + exp[1]);
         } else if (quant_valores == 3){
             ReplaceA(exp, valores[0], tam_exp);
             ReplaceB(exp, valores[1], tam_exp);
             ReplaceC(exp, valores[2], tam_exp);
-            //System.out.println(exp);
+            //System.out.println("Dentro de replace: " + exp[1]);
         }
 
-        //not(exp, tam_exp);
+        while(true){
 
-        while(exp[1] != '1' && exp[1] != '0'){
-
-           next = nextOper(exp, tam_exp);
+            next = nextOper(exp, tam_exp);
 
             if(next.equals("not")){
                 not(exp, tam_exp);
@@ -199,14 +189,14 @@ public class Questao5 {
                 and(exp, tam_exp);
             } else if(next.equals("or")){
                 or(exp, tam_exp);
+            } else {
+                break;
             }
 
-            //System.out.println("Entrou");
+            System.err.println(exp);
         }
         
-        //System.out.println(exp);
-
-        if(exp[1] == '1'){
+        if(exp[0] == '1'){
             return true;
         } else{
             return false;
@@ -222,24 +212,28 @@ public class Questao5 {
         int quant_number;
         boolean retorno; 
 
-        while (sc.hasNextLine()) {
-            quant_number = sc.nextInt();
-            int[] valores = new int[quant_number];
-            for(int i = 0; i < quant_number; i++){
-                valores[i] = sc.nextInt();
-            }
-
-            expressao = sc.nextLine();
-           
-            retorno = AlgebraBoolean(expressao,quant_number, valores);
-            if (retorno  == true){
-                System.out.println("1");
-            }else {
-                System.out.println("0");
-
-            }
+        
+        do {
+            quant_number = sc.nextInt(); //2 0 0 and
             
-        }
+            if(quant_number > 0){
+                int[] valores = new int[quant_number];
+                for(int i = 0; i < quant_number; i++){
+                    valores[i] = sc.nextInt();
+                }
+    
+                expressao = sc.nextLine();
+               
+                retorno = AlgebraBoolean(expressao,quant_number, valores);
+                if (retorno  == true){
+                    System.out.println("1");
+                }else {
+                    System.out.println("0");  
+                }
+                
+            }
+
+        }while(quant_number > 0);
 
         sc.close();
     }

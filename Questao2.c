@@ -5,12 +5,12 @@
 bool palindromo(char *);
 
 int main(){
-    char string[200];
+    char string[400];
     int valid = 0;
     bool retorno;
 
     do{
-        fgets(string,200,stdin); 
+        fgets(string,400,stdin); 
         if (string[0] == 'F' && string[1] == 'I' && string[2] == 'M'){
             valid = 1;
         }else{
